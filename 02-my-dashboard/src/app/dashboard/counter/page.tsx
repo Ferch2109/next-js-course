@@ -1,4 +1,4 @@
-import { CardCounter } from "@/app/shopping-cart";
+import { CardCounter } from "@/shopping-cart";
 
 export const metadata = {
  title: 'Shopping Cart',
@@ -13,3 +13,4 @@ export default function NamePage() {
 		</div>
 	);
 }
+Œ
