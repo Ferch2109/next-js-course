@@ -1,14 +1,15 @@
 import { Metadata, ResolvingMetadata } from 'next';
 import Image from 'next/image';
-import { getPokemon } from '../../pokemons/helper';
+import { getPokemon, getPokemons } from '../helper';
 
 interface Props {
-	params: Promise<{ id: string }>;
+	params: Promise<{ name: string }>;
 }
 
+// IMPORTANT: It will only be executed during build time.
 export async function generateStaticParams() {
-	const static151Pokemons = Array.from({ length: 151 }).map((v, i) => `${i + 1}`);
-	return static151Pokemons.map((id) => ({ id }));
+	const static151Pokemons = await getPokemons(151);
+	return static151Pokemons.map(({ name }) => ({ name }));
 }
 
 export async function generateMetadata(
@@ -17,7 +18,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
 	try {
 		const params = await props.params;
-		const { id, name } = await getPokemon(params.id);
+		const { id, name } = await getPokemon(params.name);
 
 		return {
 			title: `${id} - ${name}`,
@@ -34,7 +35,7 @@ export async function generateMetadata(
 
 export default async function PokemonPage(props: Props) {
 	const params = await props.params;
-	const pokemon = await getPokemon(params.id);
+	const pokemon = await getPokemon(params.name);
 
 	return (
 		<div className='flex mt-5 flex-col items-center text-slate-800'>
