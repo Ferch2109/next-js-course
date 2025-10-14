@@ -1,19 +1,17 @@
 import { PokemonGrid } from '@/pokemons';
-import { getPokemons } from './helper';
 
 export const metadata = {
-	title: '151 Pokemons',
+	title: 'Favoritos',
 	description: 'Ad minim sit bla blebli',
 };
 
 export default async function PokemonPage() {
-	const pokemons = await getPokemons(151);
 
 	return (
 		<div className='flex flex-col'>
 			<span className='text-5xl my-2'>
-				Listado de Pokemons <small className='text-blue-500'>estatico</small>
-				<PokemonGrid pokemons={pokemons} />
+				Pokemons Favoritos <small className='text-blue-500'>Estado Global</small>
+				<PokemonGrid pokemons={[]} />
 			</span>
 		</div>
 	);
