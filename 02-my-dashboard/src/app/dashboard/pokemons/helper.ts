@@ -1,4 +1,4 @@
-import { Pokemon, PokemonsReponse, SimplePokemon } from '@/pokemons';
+import { Pokemon, PokemonsReponse, SimplePokemon } from '@/components/pokemons';
 import { notFound } from 'next/navigation';
 
 export const getPokemons = async (
