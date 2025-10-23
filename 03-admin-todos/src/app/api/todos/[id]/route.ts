@@ -51,3 +51,13 @@ export async function PUT(request: NextRequest, args: Args) {
 		return NextResponse.json(error, { status: 404 });
 	}
 }
+
+export async function DELETE(request: NextRequest, args: Args) {
+	try {
+		const { id } = await args.params;
+		await prisma.todo.delete({ where: { id } });
+		return NextResponse.json({ status: 'success' });
+	} catch (error) {
+		return NextResponse.json(error, { status: 404 });
+	}
+}
